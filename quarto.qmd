@@ -1,0 +1,23 @@
+---
+title: Open and Reproducible Research Outputs with Quarto 
+author: Cédric Grueau 
+format: 
+    html: default
+    pdf: default
+    
+---
+
+## Abstract
+
+My presentation will focus on **how Quarto facilitates transparent workflows and shareable outputs**. The key impact highlighted will be enhanced research *reproducibility*, broader *dissemination*, and increased *verifiability*, thereby expanding the reach and trustworthiness of scholarly work [@dupre2025open].
+
+```{javascript}
+console.log("JS runtime OK");
+document.body.innerHTML += "<p>JS executado com sucesso!</p>";
+```
+
+## Research Overview
+
+This communication **will showcase how open research practices are embedded in my work**, which spans psychology, focusing on AI-driven emotion recognition from physiological and facial cues, and data science support for Business School projects in Economics, Accounting, and Public Policy. To learn more about Quarto see <https:!&quarto.org>.
+
+## References

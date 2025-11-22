@@ -1,0 +1,11 @@
+{
+  "hash": "785aa16a51c39f308d2375785c11a4bb",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\ntitle: Open and Reproducible Research Outputs with Quarto \nauthor: Cédric Grueau \nformat: \n    html: default\n    pdf: default\n    \n---\n\n## Abstract\n\nMy presentation will focus on **how Quarto facilitates transparent workflows and shareable outputs**. The key impact highlighted will be enhanced research *reproducibility*, broader *dissemination*, and increased *verifiability*, thereby expanding the reach and trustworthiness of scholarly work [@dupre2025open].\n\n```{javascript}\nconsole.log(\"JS runtime OK\");\ndocument.body.innerHTML += \"<p>JS executado com sucesso!</p>\";\n```\n\n## Research Overview\n\nThis communication **will showcase how open research practices are embedded in my work**, which spans psychology, focusing on AI-driven emotion recognition from physiological and facial cues, and data science support for Business School projects in Economics, Accounting, and Public Policy. To learn more about Quarto see <https:!&quarto.org>.\n\n## References\n\n",
+    "supporting": [
+      "quarto_files\\figure-pdf"
+    ],
+    "filters": []
+  }
+}
