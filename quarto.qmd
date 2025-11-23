@@ -22,36 +22,68 @@ This is the stats tab content.
 This is the pie chart tab content.
 
 ```{ojs}
-// Carregar os dados limpos
-rawData = FileAttachment("data/resultados.json").json()
-
-// Lista de chaves que não são partidos para excluir da visualização
-const nonPartyKeys = [
-  "Votantes", "Abstenção", "Brancos", "Nulos", "Votos Val. Exp. (VVE)"
-];
-
-// Transformar os dados para o formato hierárquico que o D3.js necessita
-// Estrutura: { name: "Portugal", children: [ { name: "Distrito", children: [ { name: "Partido", value: Votos } ] } ] }
-data = (() => {
-  const children = Object.entries(rawData).map(([districtName, districtData]) => {
-    const partyChildren = Object.entries(districtData.data)
-      .filter(([key, value]) => !nonPartyKeys.includes(key) && value && value["Número"] != null)
-      .map(([partyName, partyData]) => ({
-        name: partyName,
-        value: partyData["Número"]
-      }));
-    
-    return {
-      name: districtName,
-      children: partyChildren
-    };
-  });
-
-  return { name: "Portugal", children: children };
-})()
-
-
 chart = {
+  // Carregar os dados limpos
+  const rawData = await FileAttachment("data/resultados.json").json();
+
+  // Lista de chaves que não são partidos para excluir da visualização
+  const nonPartyKeys = [
+    "Votantes", "Abstenção", "Brancos", "Nulos", "Votos Val. Exp. (VVE)"
+  ];
+
+  // Função para transformar os dados para o formato hierárquico
+  function transformData(rawData) {
+    const parties = {}; // Objeto para agrupar dados por partido
+
+    // Itera sobre cada distrito nos dados brutos
+    for (const [districtName, districtData] of Object.entries(rawData)) {
+      // Itera sobre cada entrada (partido ou outra métrica) dentro do distrito
+      for (const [key, value] of Object.entries(districtData.data)) {
+        // Verifica se é um partido e se tem um número de votos válido
+        if (!nonPartyKeys.includes(key) && value && value["Número"] != null) {
+          const partyName = key;
+          const votes = value["Número"];
+
+          // Se o partido ainda não foi adicionado ao objeto, inicializa-o
+          if (!parties[partyName]) {
+            parties[partyName] = {
+              name: partyName,
+              children: []
+            };
+          }
+
+          // Adiciona o distrito e os seus votos como filho do partido
+          parties[partyName].children.push({
+            name: districtName,
+            value: votes
+          });
+        }
+      }
+    }
+
+    // Retorna a estrutura hierárquica final com os partidos no primeiro nível
+    return { name: "Portugal", children: Object.values(parties) };
+  }
+
+  // Criar a variável 'data' usando a função
+  const data = transformData(rawData);
+
+  // Mapa de cores dos partidos
+  const partyColors = {
+    "CH": "#0033A1",               // Azul Escuro
+    "PPD/PSD.CDS-PP": "#FF8200",    // Laranja (AD)
+    "PS": "#FF8080",               // Rosa
+    "L": "#8aff8aff",                // Verde Claro
+    "IL": "#00AEEF",               // Azul Claro
+    "B.E.": "#D22630",             // Vermelho
+    "ADN": "#FFD700",              // Amarelo (Dourado)
+    "PCP-PEV": "#A52A2A",          // Castanho Avermelhado (CDU)
+    "PAN": "#009688",              // Verde Água
+    "ND": "#2c3e50"                // Cinzento Ardósia (Nova Direita)
+  };
+  const defaultColor = "#cccccc"; // Cor padrão para outros partidos
+
+
   // Especificar as dimensões do gráfico
   const width = 928;
   const height = width;
@@ -88,8 +120,12 @@ chart = {
     .selectAll("path")
     .data(root.descendants().slice(1))
     .join("path")
-      // A cor é definida pelo ancestral do topo (o distrito)
-      .attr("fill", d => { while (d.depth > 1) d = d.parent; return color(d.data.name); })
+      .attr("fill", d => {
+        // Encontra o ancestral que é um partido (profundidade 1)
+        const ancestor = d.depth > 1 ? d.ancestors().find(a => a.depth === 1) : d;
+        // Usa a cor do partido ou a cor padrão
+        return partyColors[ancestor.data.name] || defaultColor;
+      })
       .attr("fill-opacity", d => arcVisible(d.current) ? (d.children ? 0.8 : 0.5) : 0)
       .attr("pointer-events", d => arcVisible(d.current) ? "auto" : "none")
       .attr("d", d => arc(d.current));
