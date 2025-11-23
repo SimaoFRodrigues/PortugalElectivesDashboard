@@ -1,0 +1,1850 @@
+{
+  "Aveiro": {
+    "id": "1",
+    "data": {
+      "Votantes": {
+        "Número": 414346
+      },
+      "Abstenção": {
+        "% / INSC": 35.46464811656503
+      },
+      "Brancos": {
+        "Número": 6649
+      },
+      "Nulos": {
+        "Número": 3771
+      },
+      "Votos Val. Exp. (VVE)": {
+        "Número": 403926
+      },
+      "ADN": {
+        "Número": 6989
+      },
+      "B.E.": {
+        "Número": 7028
+      },
+      "CH": {
+        "Número": 85834
+      },
+      "E": {
+        "Número": 525
+      },
+      "IL": {
+        "Número": 23452
+      },
+      "JPP": {
+        "Número": null
+      },
+      "L": {
+        "Número": 12752
+      },
+      "MPT": {
+        "Número": null
+      },
+      "NC": {
+        "Número": 289
+      },
+      "ND": {
+        "Número": 472
+      },
+      "PAN": {
+        "Número": 5134
+      },
+      "PCP-PEV": {
+        "Número": 4924
+      },
+      "PCTP/MRPP": {
+        "Número": 1008
+      },
+      "PLS": {
+        "Número": null
+      },
+      "PPD/PSD.CDS-PP": {
+        "Número": 163669
+      },
+      "PPD/PSD.CDS-PP.PPM": {
+        "Número": null
+      },
+      "PPM": {
+        "Número": 304
+      },
+      "PS": {
+        "Número": 90030
+      },
+      "PTP": {
+        "Número": null
+      },
+      "R.I.R.": {
+        "Número": 936
+      },
+      "VP": {
+        "Número": 580
+      }
+    },
+    "partidos": {}
+  },
+  "Beja": {
+    "id": "2",
+    "data": {
+      "Votantes": {
+        "Número": 73743
+      },
+      "Abstenção": {
+        "% / INSC": 37.67494929006085
+      },
+      "Brancos": {
+        "Número": 1012
+      },
+      "Nulos": {
+        "Número": 690
+      },
+      "Votos Val. Exp. (VVE)": {
+        "Número": 72041
+      },
+      "ADN": {
+        "Número": 713
+      },
+      "B.E.": {
+        "Número": 1365
+      },
+      "CH": {
+        "Número": 20447
+      },
+      "E": {
+        "Número": 87
+      },
+      "IL": {
+        "Número": 1439
+      },
+      "JPP": {
+        "Número": null
+      },
+      "L": {
+        "Número": 1547
+      },
+      "MPT": {
+        "Número": null
+      },
+      "NC": {
+        "Número": null
+      },
+      "ND": {
+        "Número": 97
+      },
+      "PAN": {
+        "Número": 636
+      },
+      "PCP-PEV": {
+        "Número": 10000
+      },
+      "PCTP/MRPP": {
+        "Número": 455
+      },
+      "PLS": {
+        "Número": null
+      },
+      "PPD/PSD.CDS-PP": {
+        "Número": 15407
+      },
+      "PPD/PSD.CDS-PP.PPM": {
+        "Número": null
+      },
+      "PPM": {
+        "Número": 84
+      },
+      "PS": {
+        "Número": 19536
+      },
+      "PTP": {
+        "Número": null
+      },
+      "R.I.R.": {
+        "Número": 135
+      },
+      "VP": {
+        "Número": 93
+      }
+    },
+    "partidos": {}
+  },
+  "Braga": {
+    "id": "3",
+    "data": {
+      "Votantes": {
+        "Número": 545324
+      },
+      "Abstenção": {
+        "% / INSC": 30.300233898695026
+      },
+      "Brancos": {
+        "Número": 9019
+      },
+      "Nulos": {
+        "Número": 5803
+      },
+      "Votos Val. Exp. (VVE)": {
+        "Número": 530502
+      },
+      "ADN": {
+        "Número": 5333
+      },
+      "B.E.": {
+        "Número": 10041
+      },
+      "CH": {
+        "Número": 119858
+      },
+      "E": {
+        "Número": 528
+      },
+      "IL": {
+        "Número": 36698
+      },
+      "JPP": {
+        "Número": 307
+      },
+      "L": {
+        "Número": 16618
+      },
+      "MPT": {
+        "Número": null
+      },
+      "NC": {
+        "Número": null
+      },
+      "ND": {
+        "Número": 889
+      },
+      "PAN": {
+        "Número": 5183
+      },
+      "PCP-PEV": {
+        "Número": 9182
+      },
+      "PCTP/MRPP": {
+        "Número": null
+      },
+      "PLS": {
+        "Número": null
+      },
+      "PPD/PSD.CDS-PP": {
+        "Número": 198026
+      },
+      "PPD/PSD.CDS-PP.PPM": {
+        "Número": null
+      },
+      "PPM": {
+        "Número": 272
+      },
+      "PS": {
+        "Número": 125593
+      },
+      "PTP": {
+        "Número": null
+      },
+      "R.I.R.": {
+        "Número": 1280
+      },
+      "VP": {
+        "Número": 694
+      }
+    },
+    "partidos": {}
+  },
+  "Bragança": {
+    "id": "4",
+    "data": {
+      "Votantes": {
+        "Número": 69983
+      },
+      "Abstenção": {
+        "% / INSC": 47.28528600912939
+      },
+      "Brancos": {
+        "Número": 853
+      },
+      "Nulos": {
+        "Número": 923
+      },
+      "Votos Val. Exp. (VVE)": {
+        "Número": 68207
+      },
+      "ADN": {
+        "Número": 1071
+      },
+      "B.E.": {
+        "Número": 590
+      },
+      "CH": {
+        "Número": 14290
+      },
+      "E": {
+        "Número": 80
+      },
+      "IL": {
+        "Número": 1541
+      },
+      "JPP": {
+        "Número": null
+      },
+      "L": {
+        "Número": 793
+      },
+      "MPT": {
+        "Número": null
+      },
+      "NC": {
+        "Número": null
+      },
+      "ND": {
+        "Número": null
+      },
+      "PAN": {
+        "Número": 455
+      },
+      "PCP-PEV": {
+        "Número": 725
+      },
+      "PCTP/MRPP": {
+        "Número": null
+      },
+      "PLS": {
+        "Número": null
+      },
+      "PPD/PSD.CDS-PP": {
+        "Número": 30628
+      },
+      "PPD/PSD.CDS-PP.PPM": {
+        "Número": null
+      },
+      "PPM": {
+        "Número": 66
+      },
+      "PS": {
+        "Número": 17785
+      },
+      "PTP": {
+        "Número": null
+      },
+      "R.I.R.": {
+        "Número": 97
+      },
+      "VP": {
+        "Número": 86
+      }
+    },
+    "partidos": {}
+  },
+  "Castelo Branco": {
+    "id": "5",
+    "data": {
+      "Votantes": {
+        "Número": 104076
+      },
+      "Abstenção": {
+        "% / INSC": 35.98238340694084
+      },
+      "Brancos": {
+        "Número": 1494
+      },
+      "Nulos": {
+        "Número": 1312
+      },
+      "Votos Val. Exp. (VVE)": {
+        "Número": 101270
+      },
+      "ADN": {
+        "Número": 1874
+      },
+      "B.E.": {
+        "Número": 1716
+      },
+      "CH": {
+        "Número": 24322
+      },
+      "E": {
+        "Número": 145
+      },
+      "IL": {
+        "Número": 3146
+      },
+      "JPP": {
+        "Número": null
+      },
+      "L": {
+        "Número": 2652
+      },
+      "MPT": {
+        "Número": null
+      },
+      "NC": {
+        "Número": null
+      },
+      "ND": {
+        "Número": null
+      },
+      "PAN": {
+        "Número": 946
+      },
+      "PCP-PEV": {
+        "Número": 2228
+      },
+      "PCTP/MRPP": {
+        "Número": 301
+      },
+      "PLS": {
+        "Número": null
+      },
+      "PPD/PSD.CDS-PP": {
+        "Número": 33625
+      },
+      "PPD/PSD.CDS-PP.PPM": {
+        "Número": null
+      },
+      "PPM": {
+        "Número": 154
+      },
+      "PS": {
+        "Número": 29764
+      },
+      "PTP": {
+        "Número": null
+      },
+      "R.I.R.": {
+        "Número": 199
+      },
+      "VP": {
+        "Número": 198
+      }
+    },
+    "partidos": {}
+  },
+  "Coimbra": {
+    "id": "6",
+    "data": {
+      "Votantes": {
+        "Número": 231323
+      },
+      "Abstenção": {
+        "% / INSC": 37.61061350206191
+      },
+      "Brancos": {
+        "Número": 4581
+      },
+      "Nulos": {
+        "Número": 2311
+      },
+      "Votos Val. Exp. (VVE)": {
+        "Número": 224431
+      },
+      "ADN": {
+        "Número": 3753
+      },
+      "B.E.": {
+        "Número": 5028
+      },
+      "CH": {
+        "Número": 42547
+      },
+      "E": {
+        "Número": 341
+      },
+      "IL": {
+        "Número": 10275
+      },
+      "JPP": {
+        "Número": 154
+      },
+      "L": {
+        "Número": 9386
+      },
+      "MPT": {
+        "Número": null
+      },
+      "NC": {
+        "Número": null
+      },
+      "ND": {
+        "Número": 245
+      },
+      "PAN": {
+        "Número": 2829
+      },
+      "PCP-PEV": {
+        "Número": 5807
+      },
+      "PCTP/MRPP": {
+        "Número": null
+      },
+      "PLS": {
+        "Número": null
+      },
+      "PPD/PSD.CDS-PP": {
+        "Número": 79549
+      },
+      "PPD/PSD.CDS-PP.PPM": {
+        "Número": null
+      },
+      "PPM": {
+        "Número": 237
+      },
+      "PS": {
+        "Número": 63405
+      },
+      "PTP": {
+        "Número": null
+      },
+      "R.I.R.": {
+        "Número": 475
+      },
+      "VP": {
+        "Número": 400
+      }
+    },
+    "partidos": {}
+  },
+  "Évora": {
+    "id": "7",
+    "data": {
+      "Votantes": {
+        "Número": 84924
+      },
+      "Abstenção": {
+        "% / INSC": 35.96682375117814
+      },
+      "Brancos": {
+        "Número": 1263
+      },
+      "Nulos": {
+        "Número": 747
+      },
+      "Votos Val. Exp. (VVE)": {
+        "Número": 82914
+      },
+      "ADN": {
+        "Número": 983
+      },
+      "B.E.": {
+        "Número": 1487
+      },
+      "CH": {
+        "Número": 21082
+      },
+      "E": {
+        "Número": 83
+      },
+      "IL": {
+        "Número": 2415
+      },
+      "JPP": {
+        "Número": null
+      },
+      "L": {
+        "Número": 2296
+      },
+      "MPT": {
+        "Número": null
+      },
+      "NC": {
+        "Número": 106
+      },
+      "ND": {
+        "Número": null
+      },
+      "PAN": {
+        "Número": 790
+      },
+      "PCP-PEV": {
+        "Número": 8636
+      },
+      "PCTP/MRPP": {
+        "Número": null
+      },
+      "PLS": {
+        "Número": null
+      },
+      "PPD/PSD.CDS-PP": {
+        "Número": 21071
+      },
+      "PPD/PSD.CDS-PP.PPM": {
+        "Número": null
+      },
+      "PPM": {
+        "Número": 68
+      },
+      "PS": {
+        "Número": 23617
+      },
+      "PTP": {
+        "Número": null
+      },
+      "R.I.R.": {
+        "Número": 138
+      },
+      "VP": {
+        "Número": 142
+      }
+    },
+    "partidos": {}
+  },
+  "Faro": {
+    "id": "8",
+    "data": {
+      "Votantes": {
+        "Número": 230429
+      },
+      "Abstenção": {
+        "% / INSC": 39.983695538932764
+      },
+      "Brancos": {
+        "Número": 3252
+      },
+      "Nulos": {
+        "Número": 1834
+      },
+      "Votos Val. Exp. (VVE)": {
+        "Número": 225343
+      },
+      "ADN": {
+        "Número": 4190
+      },
+      "B.E.": {
+        "Número": 5732
+      },
+      "CH": {
+        "Número": 78135
+      },
+      "E": {
+        "Número": 486
+      },
+      "IL": {
+        "Número": 10056
+      },
+      "JPP": {
+        "Número": 264
+      },
+      "L": {
+        "Número": 7735
+      },
+      "MPT": {
+        "Número": null
+      },
+      "NC": {
+        "Número": null
+      },
+      "ND": {
+        "Número": 425
+      },
+      "PAN": {
+        "Número": 4166
+      },
+      "PCP-PEV": {
+        "Número": 6172
+      },
+      "PCTP/MRPP": {
+        "Número": null
+      },
+      "PLS": {
+        "Número": null
+      },
+      "PPD/PSD.CDS-PP": {
+        "Número": 59380
+      },
+      "PPD/PSD.CDS-PP.PPM": {
+        "Número": null
+      },
+      "PPM": {
+        "Número": 332
+      },
+      "PS": {
+        "Número": 47321
+      },
+      "PTP": {
+        "Número": null
+      },
+      "R.I.R.": {
+        "Número": 512
+      },
+      "VP": {
+        "Número": 437
+      }
+    },
+    "partidos": {}
+  },
+  "Guarda": {
+    "id": "9",
+    "data": {
+      "Votantes": {
+        "Número": 81621
+      },
+      "Abstenção": {
+        "% / INSC": 41.492839017676665
+      },
+      "Brancos": {
+        "Número": 1179
+      },
+      "Nulos": {
+        "Número": 1185
+      },
+      "Votos Val. Exp. (VVE)": {
+        "Número": 79257
+      },
+      "ADN": {
+        "Número": 1662
+      },
+      "B.E.": {
+        "Número": 1010
+      },
+      "CH": {
+        "Número": 17249
+      },
+      "E": {
+        "Número": 80
+      },
+      "IL": {
+        "Número": 1995
+      },
+      "JPP": {
+        "Número": null
+      },
+      "L": {
+        "Número": 1229
+      },
+      "MPT": {
+        "Número": null
+      },
+      "NC": {
+        "Número": 117
+      },
+      "ND": {
+        "Número": null
+      },
+      "PAN": {
+        "Número": 607
+      },
+      "PCP-PEV": {
+        "Número": 1037
+      },
+      "PCTP/MRPP": {
+        "Número": null
+      },
+      "PLS": {
+        "Número": null
+      },
+      "PPD/PSD.CDS-PP": {
+        "Número": 32295
+      },
+      "PPD/PSD.CDS-PP.PPM": {
+        "Número": null
+      },
+      "PPM": {
+        "Número": 170
+      },
+      "PS": {
+        "Número": 21554
+      },
+      "PTP": {
+        "Número": null
+      },
+      "R.I.R.": {
+        "Número": 134
+      },
+      "VP": {
+        "Número": 118
+      }
+    },
+    "partidos": {}
+  },
+  "Leiria": {
+    "id": "10",
+    "data": {
+      "Votantes": {
+        "Número": 265074
+      },
+      "Abstenção": {
+        "% / INSC": 35.660869670748426
+      },
+      "Brancos": {
+        "Número": 4976
+      },
+      "Nulos": {
+        "Número": 3165
+      },
+      "Votos Val. Exp. (VVE)": {
+        "Número": 256933
+      },
+      "ADN": {
+        "Número": 5746
+      },
+      "B.E.": {
+        "Número": 5100
+      },
+      "CH": {
+        "Número": 61180
+      },
+      "E": {
+        "Número": 368
+      },
+      "IL": {
+        "Número": 15971
+      },
+      "JPP": {
+        "Número": null
+      },
+      "L": {
+        "Número": 9299
+      },
+      "MPT": {
+        "Número": null
+      },
+      "NC": {
+        "Número": null
+      },
+      "ND": {
+        "Número": 723
+      },
+      "PAN": {
+        "Número": 3104
+      },
+      "PCP-PEV": {
+        "Número": 5471
+      },
+      "PCTP/MRPP": {
+        "Número": null
+      },
+      "PLS": {
+        "Número": null
+      },
+      "PPD/PSD.CDS-PP": {
+        "Número": 98249
+      },
+      "PPD/PSD.CDS-PP.PPM": {
+        "Número": null
+      },
+      "PPM": {
+        "Número": 323
+      },
+      "PS": {
+        "Número": 50329
+      },
+      "PTP": {
+        "Número": null
+      },
+      "R.I.R.": {
+        "Número": 587
+      },
+      "VP": {
+        "Número": 483
+      }
+    },
+    "partidos": {}
+  },
+  "Lisboa": {
+    "id": "11",
+    "data": {
+      "Votantes": {
+        "Número": 1274521
+      },
+      "Abstenção": {
+        "% / INSC": 33.41109312680054
+      },
+      "Brancos": {
+        "Número": 16115
+      },
+      "Nulos": {
+        "Número": 10861
+      },
+      "Votos Val. Exp. (VVE)": {
+        "Número": 1247545
+      },
+      "ADN": {
+        "Número": 15454
+      },
+      "B.E.": {
+        "Número": 29959
+      },
+      "CH": {
+        "Número": 266214
+      },
+      "E": {
+        "Número": 2181
+      },
+      "IL": {
+        "Número": 97200
+      },
+      "JPP": {
+        "Número": 820
+      },
+      "L": {
+        "Número": 87618
+      },
+      "MPT": {
+        "Número": null
+      },
+      "NC": {
+        "Número": 756
+      },
+      "ND": {
+        "Número": 2021
+      },
+      "PAN": {
+        "Número": 23387
+      },
+      "PCP-PEV": {
+        "Número": 45452
+      },
+      "PCTP/MRPP": {
+        "Número": 3659
+      },
+      "PLS": {
+        "Número": 1901
+      },
+      "PPD/PSD.CDS-PP": {
+        "Número": 362844
+      },
+      "PPD/PSD.CDS-PP.PPM": {
+        "Número": null
+      },
+      "PPM": {
+        "Número": 939
+      },
+      "PS": {
+        "Número": 301787
+      },
+      "PTP": {
+        "Número": null
+      },
+      "R.I.R.": {
+        "Número": 2196
+      },
+      "VP": {
+        "Número": 3157
+      }
+    },
+    "partidos": {}
+  },
+  "Portalegre": {
+    "id": "12",
+    "data": {
+      "Votantes": {
+        "Número": 56083
+      },
+      "Abstenção": {
+        "% / INSC": 37.71669720695208
+      },
+      "Brancos": {
+        "Número": 808
+      },
+      "Nulos": {
+        "Número": 587
+      },
+      "Votos Val. Exp. (VVE)": {
+        "Número": 54688
+      },
+      "ADN": {
+        "Número": 601
+      },
+      "B.E.": {
+        "Número": 716
+      },
+      "CH": {
+        "Número": 16801
+      },
+      "E": {
+        "Número": 51
+      },
+      "IL": {
+        "Número": 1078
+      },
+      "JPP": {
+        "Número": null
+      },
+      "L": {
+        "Número": 965
+      },
+      "MPT": {
+        "Número": null
+      },
+      "NC": {
+        "Número": null
+      },
+      "ND": {
+        "Número": null
+      },
+      "PAN": {
+        "Número": 386
+      },
+      "PCP-PEV": {
+        "Número": 2933
+      },
+      "PCTP/MRPP": {
+        "Número": 254
+      },
+      "PLS": {
+        "Número": null
+      },
+      "PPD/PSD.CDS-PP": {
+        "Número": 14962
+      },
+      "PPD/PSD.CDS-PP.PPM": {
+        "Número": null
+      },
+      "PPM": {
+        "Número": 45
+      },
+      "PS": {
+        "Número": 15746
+      },
+      "PTP": {
+        "Número": null
+      },
+      "R.I.R.": {
+        "Número": 79
+      },
+      "VP": {
+        "Número": 71
+      }
+    },
+    "partidos": {}
+  },
+  "Porto": {
+    "id": "13",
+    "data": {
+      "Votantes": {
+        "Número": 1097509
+      },
+      "Abstenção": {
+        "% / INSC": 31.033137127621274
+      },
+      "Brancos": {
+        "Número": 14390
+      },
+      "Nulos": {
+        "Número": 9381
+      },
+      "Votos Val. Exp. (VVE)": {
+        "Número": 1073738
+      },
+      "ADN": {
+        "Número": 11283
+      },
+      "B.E.": {
+        "Número": 22219
+      },
+      "CH": {
+        "Número": 227009
+      },
+      "E": {
+        "Número": 1630
+      },
+      "IL": {
+        "Número": 67076
+      },
+      "JPP": {
+        "Número": 731
+      },
+      "L": {
+        "Número": 47232
+      },
+      "MPT": {
+        "Número": null
+      },
+      "NC": {
+        "Número": 1106
+      },
+      "ND": {
+        "Número": 1807
+      },
+      "PAN": {
+        "Número": 16402
+      },
+      "PCP-PEV": {
+        "Número": 24985
+      },
+      "PCTP/MRPP": {
+        "Número": 2142
+      },
+      "PLS": {
+        "Número": 3597
+      },
+      "PPD/PSD.CDS-PP": {
+        "Número": 375731
+      },
+      "PPD/PSD.CDS-PP.PPM": {
+        "Número": null
+      },
+      "PPM": {
+        "Número": 572
+      },
+      "PS": {
+        "Número": 263792
+      },
+      "PTP": {
+        "Número": null
+      },
+      "R.I.R.": {
+        "Número": 3945
+      },
+      "VP": {
+        "Número": 2479
+      }
+    },
+    "partidos": {}
+  },
+  "Santarém": {
+    "id": "14",
+    "data": {
+      "Votantes": {
+        "Número": 244177
+      },
+      "Abstenção": {
+        "% / INSC": 35.302783408184624
+      },
+      "Brancos": {
+        "Número": 3703
+      },
+      "Nulos": {
+        "Número": 2381
+      },
+      "Votos Val. Exp. (VVE)": {
+        "Número": 238093
+      },
+      "ADN": {
+        "Número": 3971
+      },
+      "B.E.": {
+        "Número": 4371
+      },
+      "CH": {
+        "Número": 68742
+      },
+      "E": {
+        "Número": 424
+      },
+      "IL": {
+        "Número": 9597
+      },
+      "JPP": {
+        "Número": null
+      },
+      "L": {
+        "Número": 7860
+      },
+      "MPT": {
+        "Número": null
+      },
+      "NC": {
+        "Número": null
+      },
+      "ND": {
+        "Número": null
+      },
+      "PAN": {
+        "Número": 2751
+      },
+      "PCP-PEV": {
+        "Número": 8781
+      },
+      "PCTP/MRPP": {
+        "Número": null
+      },
+      "PLS": {
+        "Número": null
+      },
+      "PPD/PSD.CDS-PP": {
+        "Número": 74742
+      },
+      "PPD/PSD.CDS-PP.PPM": {
+        "Número": null
+      },
+      "PPM": {
+        "Número": 247
+      },
+      "PS": {
+        "Número": 55570
+      },
+      "PTP": {
+        "Número": null
+      },
+      "R.I.R.": {
+        "Número": 539
+      },
+      "VP": {
+        "Número": 498
+      }
+    },
+    "partidos": {}
+  },
+  "Setúbal": {
+    "id": "15",
+    "data": {
+      "Votantes": {
+        "Número": 491419
+      },
+      "Abstenção": {
+        "% / INSC": 34.88776059126093
+      },
+      "Brancos": {
+        "Número": 6118
+      },
+      "Nulos": {
+        "Número": 4345
+      },
+      "Votos Val. Exp. (VVE)": {
+        "Número": 480956
+      },
+      "ADN": {
+        "Número": 4185
+      },
+      "B.E.": {
+        "Número": 13072
+      },
+      "CH": {
+        "Número": 129763
+      },
+      "E": {
+        "Número": 713
+      },
+      "IL": {
+        "Número": 27074
+      },
+      "JPP": {
+        "Número": 452
+      },
+      "L": {
+        "Número": 28622
+      },
+      "MPT": {
+        "Número": null
+      },
+      "NC": {
+        "Número": 389
+      },
+      "ND": {
+        "Número": 682
+      },
+      "PAN": {
+        "Número": 9223
+      },
+      "PCP-PEV": {
+        "Número": 34914
+      },
+      "PCTP/MRPP": {
+        "Número": 2993
+      },
+      "PLS": {
+        "Número": 847
+      },
+      "PPD/PSD.CDS-PP": {
+        "Número": 103213
+      },
+      "PPD/PSD.CDS-PP.PPM": {
+        "Número": null
+      },
+      "PPM": {
+        "Número": 320
+      },
+      "PS": {
+        "Número": 122858
+      },
+      "PTP": {
+        "Número": null
+      },
+      "R.I.R.": {
+        "Número": 749
+      },
+      "VP": {
+        "Número": 887
+      }
+    },
+    "partidos": {}
+  },
+  "Viana do Castelo": {
+    "id": "16",
+    "data": {
+      "Votantes": {
+        "Número": 139894
+      },
+      "Abstenção": {
+        "% / INSC": 39.851492598277595
+      },
+      "Brancos": {
+        "Número": 2363
+      },
+      "Nulos": {
+        "Número": 1293
+      },
+      "Votos Val. Exp. (VVE)": {
+        "Número": 136238
+      },
+      "ADN": {
+        "Número": 2047
+      },
+      "B.E.": {
+        "Número": 2285
+      },
+      "CH": {
+        "Número": 32143
+      },
+      "E": {
+        "Número": 276
+      },
+      "IL": {
+        "Número": 5344
+      },
+      "JPP": {
+        "Número": null
+      },
+      "L": {
+        "Número": 3640
+      },
+      "MPT": {
+        "Número": null
+      },
+      "NC": {
+        "Número": null
+      },
+      "ND": {
+        "Número": null
+      },
+      "PAN": {
+        "Número": 1301
+      },
+      "PCP-PEV": {
+        "Número": 2764
+      },
+      "PCTP/MRPP": {
+        "Número": null
+      },
+      "PLS": {
+        "Número": null
+      },
+      "PPD/PSD.CDS-PP": {
+        "Número": 55374
+      },
+      "PPD/PSD.CDS-PP.PPM": {
+        "Número": null
+      },
+      "PPM": {
+        "Número": 145
+      },
+      "PS": {
+        "Número": 30395
+      },
+      "PTP": {
+        "Número": null
+      },
+      "R.I.R.": {
+        "Número": 315
+      },
+      "VP": {
+        "Número": 209
+      }
+    },
+    "partidos": {}
+  },
+  "Vila Real": {
+    "id": "17",
+    "data": {
+      "Votantes": {
+        "Número": 113842
+      },
+      "Abstenção": {
+        "% / INSC": 44.97648588428058
+      },
+      "Brancos": {
+        "Número": 1368
+      },
+      "Nulos": {
+        "Número": 1300
+      },
+      "Votos Val. Exp. (VVE)": {
+        "Número": 111174
+      },
+      "ADN": {
+        "Número": 1714
+      },
+      "B.E.": {
+        "Número": 1144
+      },
+      "CH": {
+        "Número": 22786
+      },
+      "E": {
+        "Número": 132
+      },
+      "IL": {
+        "Número": 2482
+      },
+      "JPP": {
+        "Número": null
+      },
+      "L": {
+        "Número": 1740
+      },
+      "MPT": {
+        "Número": null
+      },
+      "NC": {
+        "Número": null
+      },
+      "ND": {
+        "Número": null
+      },
+      "PAN": {
+        "Número": 775
+      },
+      "PCP-PEV": {
+        "Número": 1403
+      },
+      "PCTP/MRPP": {
+        "Número": null
+      },
+      "PLS": {
+        "Número": null
+      },
+      "PPD/PSD.CDS-PP": {
+        "Número": 50525
+      },
+      "PPD/PSD.CDS-PP.PPM": {
+        "Número": null
+      },
+      "PPM": {
+        "Número": 186
+      },
+      "PS": {
+        "Número": 27990
+      },
+      "PTP": {
+        "Número": null
+      },
+      "R.I.R.": {
+        "Número": 183
+      },
+      "VP": {
+        "Número": 114
+      }
+    },
+    "partidos": {}
+  },
+  "Viseu": {
+    "id": "18",
+    "data": {
+      "Votantes": {
+        "Número": 206816
+      },
+      "Abstenção": {
+        "% / INSC": 38.086271363523416
+      },
+      "Brancos": {
+        "Número": 3320
+      },
+      "Nulos": {
+        "Número": 2284
+      },
+      "Votos Val. Exp. (VVE)": {
+        "Número": 201212
+      },
+      "ADN": {
+        "Número": 4190
+      },
+      "B.E.": {
+        "Número": 2465
+      },
+      "CH": {
+        "Número": 45801
+      },
+      "E": {
+        "Número": 228
+      },
+      "IL": {
+        "Número": 6468
+      },
+      "JPP": {
+        "Número": null
+      },
+      "L": {
+        "Número": 4395
+      },
+      "MPT": {
+        "Número": null
+      },
+      "NC": {
+        "Número": null
+      },
+      "ND": {
+        "Número": 432
+      },
+      "PAN": {
+        "Número": null
+      },
+      "PCP-PEV": {
+        "Número": 2491
+      },
+      "PCTP/MRPP": {
+        "Número": null
+      },
+      "PLS": {
+        "Número": null
+      },
+      "PPD/PSD.CDS-PP": {
+        "Número": 88385
+      },
+      "PPD/PSD.CDS-PP.PPM": {
+        "Número": null
+      },
+      "PPM": {
+        "Número": 344
+      },
+      "PS": {
+        "Número": 45219
+      },
+      "PTP": {
+        "Número": null
+      },
+      "R.I.R.": {
+        "Número": 548
+      },
+      "VP": {
+        "Número": 246
+      }
+    },
+    "partidos": {}
+  },
+  "RA Açores": {
+    "id": "19",
+    "data": {
+      "Votantes": {
+        "Número": 100910
+      },
+      "Abstenção": {
+        "% / INSC": 56.1811462987811
+      },
+      "Brancos": {
+        "Número": 3010
+      },
+      "Nulos": {
+        "Número": 1150
+      },
+      "Votos Val. Exp. (VVE)": {
+        "Número": 96750
+      },
+      "ADN": {
+        "Número": 1666
+      },
+      "B.E.": {
+        "Número": 2106
+      },
+      "CH": {
+        "Número": 23059
+      },
+      "E": {
+        "Número": 119
+      },
+      "IL": {
+        "Número": 3484
+      },
+      "JPP": {
+        "Número": 271
+      },
+      "L": {
+        "Número": 2539
+      },
+      "MPT": {
+        "Número": 122
+      },
+      "NC": {
+        "Número": null
+      },
+      "ND": {
+        "Número": null
+      },
+      "PAN": {
+        "Número": 1314
+      },
+      "PCP-PEV": {
+        "Número": 1224
+      },
+      "PCTP/MRPP": {
+        "Número": null
+      },
+      "PLS": {
+        "Número": null
+      },
+      "PPD/PSD.CDS-PP": {
+        "Número": null
+      },
+      "PPD/PSD.CDS-PP.PPM": {
+        "Número": 36886
+      },
+      "PPM": {
+        "Número": null
+      },
+      "PS": {
+        "Número": 23825
+      },
+      "PTP": {
+        "Número": null
+      },
+      "R.I.R.": {
+        "Número": 135
+      },
+      "VP": {
+        "Número": null
+      }
+    },
+    "partidos": {}
+  },
+  "RA Madeira": {
+    "id": "20",
+    "data": {
+      "Votantes": {
+        "Número": 138937
+      },
+      "Abstenção": {
+        "% / INSC": 45.68551334826682
+      },
+      "Brancos": {
+        "Número": 549
+      },
+      "Nulos": {
+        "Número": 1839
+      },
+      "Votos Val. Exp. (VVE)": {
+        "Número": 136549
+      },
+      "ADN": {
+        "Número": 1551
+      },
+      "B.E.": {
+        "Número": 1871
+      },
+      "CH": {
+        "Número": 29048
+      },
+      "E": {
+        "Número": 186
+      },
+      "IL": {
+        "Número": 3665
+      },
+      "JPP": {
+        "Número": 17113
+      },
+      "L": {
+        "Número": 1750
+      },
+      "MPT": {
+        "Número": 356
+      },
+      "NC": {
+        "Número": null
+      },
+      "ND": {
+        "Número": 434
+      },
+      "PAN": {
+        "Número": 1450
+      },
+      "PCP-PEV": {
+        "Número": 1758
+      },
+      "PCTP/MRPP": {
+        "Número": null
+      },
+      "PLS": {
+        "Número": null
+      },
+      "PPD/PSD.CDS-PP": {
+        "Número": 57440
+      },
+      "PPD/PSD.CDS-PP.PPM": {
+        "Número": null
+      },
+      "PPM": {
+        "Número": 452
+      },
+      "PS": {
+        "Número": 18704
+      },
+      "PTP": {
+        "Número": 425
+      },
+      "R.I.R.": {
+        "Número": 346
+      },
+      "VP": {
+        "Número": null
+      }
+    },
+    "partidos": {}
+  },
+  "Europa": {
+    "id": "21",
+    "data": {
+      "Votantes": {
+        "Número": 256784
+      },
+      "Abstenção": {
+        "% / INSC": 72.91485156034099
+      },
+      "Brancos": {
+        "Número": 1264
+      },
+      "Nulos": {
+        "Número": 82872
+      },
+      "Votos Val. Exp. (VVE)": {
+        "Número": 172648
+      },
+      "ADN": {
+        "Número": 1201
+      },
+      "B.E.": {
+        "Número": 4743
+      },
+      "CH": {
+        "Número": 72010
+      },
+      "E": {
+        "Número": 252
+      },
+      "IL": {
+        "Número": 6452
+      },
+      "JPP": {
+        "Número": 551
+      },
+      "L": {
+        "Número": 5626
+      },
+      "MPT": {
+        "Número": null
+      },
+      "NC": {
+        "Número": 343
+      },
+      "ND": {
+        "Número": 504
+      },
+      "PAN": {
+        "Número": 4072
+      },
+      "PCP-PEV": {
+        "Número": 2214
+      },
+      "PCTP/MRPP": {
+        "Número": 785
+      },
+      "PLS": {
+        "Número": 442
+      },
+      "PPD/PSD.CDS-PP": {
+        "Número": 37411
+      },
+      "PPD/PSD.CDS-PP.PPM": {
+        "Número": null
+      },
+      "PPM": {
+        "Número": 186
+      },
+      "PS": {
+        "Número": 34582
+      },
+      "PTP": {
+        "Número": null
+      },
+      "R.I.R.": {
+        "Número": 329
+      },
+      "VP": {
+        "Número": 945
+      }
+    },
+    "partidos": {}
+  },
+  "Fora da Europa": {
+    "id": "22",
+    "data": {
+      "Votantes": {
+        "Número": 98234
+      },
+      "Abstenção": {
+        "% / INSC": 84.57041434988848
+      },
+      "Brancos": {
+        "Número": 368
+      },
+      "Nulos": {
+        "Número": 32960
+      },
+      "Votos Val. Exp. (VVE)": {
+        "Número": 64906
+      },
+      "ADN": {
+        "Número": 1483
+      },
+      "B.E.": {
+        "Número": 1760
+      },
+      "CH": {
+        "Número": 20234
+      },
+      "E": {
+        "Número": 131
+      },
+      "IL": {
+        "Número": 2066
+      },
+      "JPP": {
+        "Número": 237
+      },
+      "L": {
+        "Número": 997
+      },
+      "MPT": {
+        "Número": null
+      },
+      "NC": {
+        "Número": 198
+      },
+      "ND": {
+        "Número": 1485
+      },
+      "PAN": {
+        "Número": 2019
+      },
+      "PCP-PEV": {
+        "Número": 585
+      },
+      "PCTP/MRPP": {
+        "Número": 299
+      },
+      "PLS": {
+        "Número": 545
+      },
+      "PPD/PSD.CDS-PP": {
+        "Número": 19076
+      },
+      "PPD/PSD.CDS-PP.PPM": {
+        "Número": null
+      },
+      "PPM": {
+        "Número": 170
+      },
+      "PS": {
+        "Número": 13144
+      },
+      "PTP": {
+        "Número": null
+      },
+      "R.I.R.": {
+        "Número": 164
+      },
+      "VP": {
+        "Número": 313
+      }
+    },
+    "partidos": {}
+  }
+}
