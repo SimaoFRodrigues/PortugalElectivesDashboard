@@ -1,4 +1,4 @@
-const ficheiro = "legislativas_raw.json";
+const ficheiro = "data/legislativas_raw.json";
 
 function cleanElectionData(rawData) {
   const cleaned = { Inscritos: {}, Votantes: {} };

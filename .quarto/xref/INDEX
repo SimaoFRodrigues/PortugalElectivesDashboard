@@ -2,5 +2,8 @@
   "quarto.qmd": {
     "quarto.tex": "ceaaec5f",
     "quarto.html": "c22fcfe9"
+  },
+  "dashboard-ojs.qmd": {
+    "dashboard-ojs.html": "cfc7eac6"
   }
 }
