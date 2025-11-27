@@ -2,7 +2,7 @@
 title: Portugal Legislativas 2025
 format: 
     dashboard:
-        orientation: rows
+        orientation: columns
         page-navigation: true
 navbar:
   right:
@@ -14,17 +14,214 @@ navbar:
 
 
 # Stats
-This is the stats tab content.
+## Sintese
+### TaxaAbstencao
+```{python}
+import json
 
----
+# carregar dados
+with open("data/legislativas1.json", encoding="utf-8") as f:
+    dados = json.load(f)
+
+# calcular média
+soma = 0
+total = 0
+
+for distrito in dados:
+    soma += dados[distrito]["data"]["Abstenção"]["% / INSC"]
+    total += 1
+
+media = soma / total
+
+# número com vírgula
+valor = f"{media:.2f}".replace(".", ",")
+
+# imprimir bonito
+print(f"{valor}%\nTaxa de abstenção")
+```
+
+### TotalInscritos
+
+```{python}
+import json
+
+# carregar dados
+with open("data/legislativas1.json", encoding="utf-8") as f:
+    dados = json.load(f)
+
+# calcular média
+votantes = 0
+
+for distrito in dados:
+    votantes += dados[distrito]["data"]["Votantes"]["Número"];
+    votantes += dados[distrito]["data"]["Brancos"]["Número"];
+    votantes += dados[distrito]["data"]["Nulos"]["Número"];
+
+
+# imprimir bonito
+print(f"{votantes}\nTotal de inscritos")
+```
+
+### NumerosAbstencao
+
+```{python}
+import json
+
+# carregar dados
+with open("data/legislativas1.json", encoding="utf-8") as f:
+    dados = json.load(f)
+
+# dicionário { distrito: taxa }
+abstencoes = {
+    distrito: info["data"]["Abstenção"]["% / INSC"]
+    for distrito, info in dados.items()
+}
+
+# maior
+distrito_max = max(abstencoes, key=abstencoes.get)
+valor_max = abstencoes[distrito_max]
+
+# menor
+distrito_min = min(abstencoes, key=abstencoes.get)
+valor_min = abstencoes[distrito_min]
+
+# formatar
+valor_max_fmt = f"{valor_max:.2f}".replace(".", ",")
+valor_min_fmt = f"{valor_min:.2f}".replace(".", ",")
+
+print(f"{distrito_max} ({valor_max_fmt}%)\nMaior taxa de abstenção\n")
+print(f"\n{distrito_min} ({valor_min_fmt}%)\nMenor taxa de abstenção")
+```
+
+## Graficos
+
+### Mapa1
+
+```{ojs}
+// carregar CSS
+html`<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">`
+
+// carregar JS como script global
+html`<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>`
+
+// carregar o teu geojson
+districts = FileAttachment("data/ContinenteDistritos_geo.geojson").json()
+
+// criar o mapa
+viewof map = {
+  let div = html`<div style="height:600px"></div>`
+
+  // garantir que L existe
+  if (!window.L) {
+    console.error("Leaflet failed to load.")
+    return div
+  }
+
+  let m = L.map(div).setView([39.5, -8], 7)
+
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    maxZoom: 18
+  }).addTo(m)
+
+  L.geoJSON(districts).addTo(m)
+
+  return div
+}
+map
+```
+
+### Mapa2
+
+```{ojs}
+import { Inputs } from "@observablehq/inputs"
+dados = FileAttachment("data/legislativas1.json").json()
+
+// campos que NÃO são partidos
+nao_partidos = ["Votantes", "Abstenção", "Brancos", "Nulos", "Votos Val. Exp. (VVE)"]
+
+// extrair lista única de partidos
+partidos = Array.from(new Set(
+  Object.values(dados)
+    .flatMap(d =>
+      Object.keys(d.data)
+        .filter(k => !nao_partidos.includes(k))   // remover campos não partidos
+    )
+))
+
+viewof partido = Inputs.select(partidos, {
+  label: "Escolhe o partido:",
+  value: "PS"
+})
+```
+
+## Numeros
+
+### VotosPartido
+
+```{ojs}
+// Calcula o total de votos por partido
+votosPorPartido = {
+  const partyTotals = {};
+  for (const distrito of Object.values(dados)) {
+    for (const [partido, info] of Object.entries(distrito.data)) {
+      if (!nao_partidos.includes(partido) && info && info["Número"] != null) {
+        if (!partyTotals[partido]) {
+          partyTotals[partido] = 0;
+        }
+        partyTotals[partido] += info["Número"];
+      }
+    }
+  }
+  // Transforma o objeto num array de objetos para a tabela
+  return Object.entries(partyTotals).map(([partido, votos]) => ({ partido, votos }));
+}
+
+// Mostra a tabela com os dados formatados
+Inputs.table(votosPorPartido, {
+  columns: [
+    "partido",
+    "votos"
+  ],
+  header: {
+    partido: "Partido",
+    votos: "Total de Votos"
+  },
+  sort: "votos", // Ordena por votos
+  reverse: true  // Ordem decrescente
+})
+```
+
+### VotosDistrito
+
+```{ojs}
+// Extrai os dados de votos por distrito
+votosPorDistrito = Object.entries(dados).map(([distrito, info]) => ({
+  distrito: distrito,
+  votos: info.data.Votantes?.Número || 0 // Usa o número de votantes por distrito
+}));
+
+// Mostra a tabela
+Inputs.table(votosPorDistrito, {
+  columns: [
+    "distrito",
+    "votos"
+  ],
+  header: {
+    distrito: "Distrito",
+    votos: "Votos"
+  },
+  sort: "votos",
+  reverse: true
+})
+```
 
 # PieChart
-This is the pie chart tab content.
+
 
 ```{ojs}
 chart = {
   // Carregar os dados limpos
-  const rawData = await FileAttachment("data/resultados.json").json();
+  const rawData = await FileAttachment("data/legislativas1.json").json();
 
   // Lista de chaves que não são partidos para excluir da visualização
   const nonPartyKeys = [
@@ -71,15 +268,15 @@ chart = {
   // Mapa de cores dos partidos
   const partyColors = {
     "CH": "#0033A1",               // Azul Escuro
-    "PPD/PSD.CDS-PP": "#FF8200",    // Laranja (AD)
+    "PPD/PSD.CDS-PP": "#FF8200",    // Laranja
     "PS": "#FF8080",               // Rosa
     "L": "#8aff8aff",                // Verde Claro
     "IL": "#00AEEF",               // Azul Claro
     "B.E.": "#D22630",             // Vermelho
-    "ADN": "#FFD700",              // Amarelo (Dourado)
-    "PCP-PEV": "#A52A2A",          // Castanho Avermelhado (CDU)
+    "ADN": "#FFD700",              // Amarelo 
+    "PCP-PEV": "#A52A2A",          // Castanho Avermelhado
     "PAN": "#009688",              // Verde Água
-    "ND": "#2c3e50"                // Cinzento Ardósia (Nova Direita)
+    "ND": "#2c3e50"                // Cinzento Ardósia 
   };
   const defaultColor = "#cccccc"; // Cor padrão para outros partidos
 
@@ -87,7 +284,7 @@ chart = {
   // Especificar as dimensões do gráfico
   const width = 928;
   const height = width;
-  const radius = width / 6;
+  const radius = width / 12;
 
   // Criar a escala de cores. As cores serão baseadas nos distritos.
   const color = d3.scaleOrdinal(d3.quantize(d3.interpolateRainbow, data.children.length + 1));

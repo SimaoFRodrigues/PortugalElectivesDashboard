@@ -1,7 +1,7 @@
 const fs = require("fs");
 
 const inputFile = "data/legislativas_raw.json";
-const outputFile = "data/resultados.json";
+const outputFile = "data/legislativas1.json";
 
 // Função para ler o ficheiro JSON
 function readJsonFile(filePath) {
