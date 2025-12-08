@@ -3,7 +3,7 @@ title: Portugal Legislativas 2025
 format: 
     dashboard:
         orientation: columns
-        page-navigation: true
+        css: css/styles.css
 navbar:
   right:
     - text: "Stats"
@@ -11,7 +11,6 @@ navbar:
     - text: "PieChart"
       href: "#piechart"
 ---
-
 
 # Stats
 ## Sintese
@@ -35,9 +34,17 @@ media = soma / total
 
 # número com vírgula
 valor = f"{media:.2f}".replace(".", ",")
+```
 
-# imprimir bonito
-print(f"{valor}%\nTaxa de abstenção")
+```{python}
+#| content: valuebox
+#| title: Taxa de Abstenção
+
+dict(
+  icon = "percent",
+  color = "secondary",
+  value = valor
+)
 ```
 
 ### TotalInscritos
@@ -57,12 +64,20 @@ for distrito in dados:
     votantes += dados[distrito]["data"]["Brancos"]["Número"];
     votantes += dados[distrito]["data"]["Nulos"]["Número"];
 
-
-# imprimir bonito
-print(f"{votantes}\nTotal de inscritos")
 ```
 
-### NumerosAbstencao
+```{python}
+#| content: valuebox
+#| title: Total de Inscritos
+
+dict(
+  icon = "person-fill-check",
+  color = "secondary",
+  value = votantes
+)
+```
+
+### Menor Taxa de Abstenção
 
 ```{python}
 import json
@@ -81,16 +96,50 @@ abstencoes = {
 distrito_max = max(abstencoes, key=abstencoes.get)
 valor_max = abstencoes[distrito_max]
 
-# menor
 distrito_min = min(abstencoes, key=abstencoes.get)
 valor_min = abstencoes[distrito_min]
 
 # formatar
 valor_max_fmt = f"{valor_max:.2f}".replace(".", ",")
 valor_min_fmt = f"{valor_min:.2f}".replace(".", ",")
+```
 
-print(f"{distrito_max} ({valor_max_fmt}%)\nMaior taxa de abstenção\n")
-print(f"\n{distrito_min} ({valor_min_fmt}%)\nMenor taxa de abstenção")
+```{python}
+#| content: valuebox
+#| title: Menor Taxa de Abstenção
+
+dict(
+  icon = "graph-down-arrow",
+  color = "success",
+  value =  distrito_min
+)
+```
+
+### Maior Taxa de Abstenção
+
+```{python}
+import json
+
+# carregar dados
+with open("data/legislativas1.json", encoding="utf-8") as f:
+    dados = json.load(f)
+
+# calcular média
+votantes = 0
+votos_vencedor = 0
+
+for distrito in dados:
+    votos_vencedor += dados[distrito]["data"]["Votantes"]["Número"];
+```
+```{python}
+#| content: valuebox
+#| title: Maior Taxa de Abstenção
+
+dict(
+  icon = "graph-up-arrow",
+  color = "danger",
+  value = distrito_max
+)
 ```
 
 ## Graficos
@@ -124,7 +173,7 @@ viewof map = {
   }).addTo(m)
 
   L.geoJSON(districts).addTo(m)
-
+  
   return div
 }
 map
@@ -134,35 +183,109 @@ map
 
 ```{ojs}
 import { Inputs } from "@observablehq/inputs"
-dados = FileAttachment("data/legislativas1.json").json()
 
-// campos que NÃO são partidos
-nao_partidos = ["Votantes", "Abstenção", "Brancos", "Nulos", "Votos Val. Exp. (VVE)"]
+// Carrega os dados originais para uma variável global segura
+dadosOriginal = await FileAttachment("data/legislativas1.json").json()
 
-// extrair lista única de partidos
-partidos = Array.from(new Set(
-  Object.values(dados)
-    .flatMap(d =>
-      Object.keys(d.data)
-        .filter(k => !nao_partidos.includes(k))   // remover campos não partidos
-    )
-))
+camposNaoPartidos = [
+  "Votantes", "Abstenção", "Brancos", "Nulos", "Votos Val. Exp. (VVE)"
+]
+
+function normalizar(str) {
+  if (typeof str !== "string") return ""
+  return str.normalize("NFD").replace(/\p{Diacritic}/gu, "").toUpperCase().trim()
+}
+
+// Mudámos de 'dados' para 'dadosMap2' para não bugar as tabelas
+dadosMap2 = Object.fromEntries(
+  Object.entries(dadosOriginal).map(([distrito, info]) => {
+    let partidos = {}
+    for (let [key, value] of Object.entries(info.data)) {
+      if (camposNaoPartidos.indexOf(key) === -1) {
+        partidos[key] = value["Número"] ?? 0
+      }
+    }
+    return [normalizar(distrito), partidos]
+  })
+)
+
+partidos = Array.from(
+  new Set(Object.values(dadosMap2).flatMap(v => Object.keys(v)))
+).sort()
 
 viewof partido = Inputs.select(partidos, {
-  label: "Escolhe o partido:",
-  value: "PS"
+  label: "Escolhe um partido:",
+  value: partidos[0]
 })
+
+districts2 = await FileAttachment("data/ContinenteDistritos_geo.geojson").json()
+
+function cor(votos, max) {
+  const v = Number(votos) || 0;
+  const m = Number(max) || 0;
+  if (!Number.isFinite(m) || m <= 0) return "rgba(220,220,220,0.6)";
+  let intensidade = v / m;
+  if (intensidade < 0) intensidade = 0;
+  if (intensidade > 1) intensidade = 1;
+  const alpha = 0.2 + 0.8 * intensidade; 
+  return `rgba(255,120,0,${alpha})`;
+}
+
+viewof map2 = {
+  let div = html`<div style="display:flex; gap:20px;">
+    <div id="map" style="height:500px; flex:1"></div>
+  </div>`
+
+  let m2 = L.map(div.querySelector("#map")).setView([39.5, -8], 7)
+
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    maxZoom: 18
+  }).addTo(m2)
+
+  let geojsonLayer
+
+  function updateMap(partidoSelecionado) {
+    if (geojsonLayer) m2.removeLayer(geojsonLayer)
+
+    let maxVotos = Math.max(
+      ...Object.values(dadosMap2).map(v => Number(v[partidoSelecionado]) || 0)
+    )
+
+    geojsonLayer = L.geoJSON(districts2, {
+      style: feature => {
+        let nomeNorm = normalizar(feature.properties.NAME_1 || feature.properties.Distrito)
+
+        let votos = dadosMap2[nomeNorm]?.[partidoSelecionado]
+        return {
+          fillColor: cor(votos, maxVotos),
+          color: "black",
+          weight: 1,
+          fillOpacity: 0.8
+        }
+      }
+    }).addTo(m2)
+  }
+
+  updateMap(partido)
+  viewof partido.addEventListener("input", e => updateMap(e.target.value))
+
+  return div
+}
 ```
 
 ## Numeros
 
-### VotosPartido
+### VotosPartido (Tabela)
 
 ```{ojs}
 // Calcula o total de votos por partido
 votosPorPartido = {
+  // Definir a lista que estava em falta
+  const nao_partidos = ["Votantes", "Abstenção", "Brancos", "Nulos", "Votos Val. Exp. (VVE)"];
   const partyTotals = {};
-  for (const distrito of Object.values(dados)) {
+  
+  // Usar dadosOriginal em vez de dados
+  for (const distrito of Object.values(dadosOriginal)) {
     for (const [partido, info] of Object.entries(distrito.data)) {
       if (!nao_partidos.includes(partido) && info && info["Número"] != null) {
         if (!partyTotals[partido]) {
@@ -172,47 +295,60 @@ votosPorPartido = {
       }
     }
   }
-  // Transforma o objeto num array de objetos para a tabela
   return Object.entries(partyTotals).map(([partido, votos]) => ({ partido, votos }));
 }
 
-// Mostra a tabela com os dados formatados
 Inputs.table(votosPorPartido, {
-  columns: [
-    "partido",
-    "votos"
-  ],
-  header: {
-    partido: "Partido",
-    votos: "Total de Votos"
-  },
-  sort: "votos", // Ordena por votos
-  reverse: true  // Ordem decrescente
-})
-```
-
-### VotosDistrito
-
-```{ojs}
-// Extrai os dados de votos por distrito
-votosPorDistrito = Object.entries(dados).map(([distrito, info]) => ({
-  distrito: distrito,
-  votos: info.data.Votantes?.Número || 0 // Usa o número de votantes por distrito
-}));
-
-// Mostra a tabela
-Inputs.table(votosPorDistrito, {
-  columns: [
-    "distrito",
-    "votos"
-  ],
-  header: {
-    distrito: "Distrito",
-    votos: "Votos"
-  },
+  columns: ["partido", "votos"],
+  header: { partido: "Partido", votos: "Total de Votos" },
   sort: "votos",
   reverse: true
 })
+```
+
+### VotosDistrito (Tabela)
+
+```{ojs}
+// Tabela de Votos por Distrito (Dinâmica)
+viewof tabelaDistritos = {
+  // 1. Obter partido selecionado (com fallback seguro)
+  // Tenta ler a variável 'partido' do input global. Se falhar, usa "PS".
+  let p = "PS";
+  try {
+    if (typeof partido !== 'undefined' && partido) {
+      p = partido;
+    }
+  } catch (e) {
+    // Ignora erro se 'partido' não existir ainda
+  }
+
+  // 2. Carregar dados
+  const dadosLocais = await FileAttachment("data/legislativas1.json").json();
+
+  // 3. Preparar dados filtrados pelo partido
+  const dadosFormatados = Object.entries(dadosLocais).map(([distrito, info]) => {
+    // Tenta obter votos do partido 'p'. Se não existir, 0.
+    const votos = info.data[p]?.["Número"] || 0;
+    
+    return {
+      distrito: distrito,
+      votos: votos
+    };
+  });
+
+  // 4. Renderizar tabela
+  return Inputs.table(dadosFormatados, {
+    columns: ["distrito", "votos"],
+    header: { 
+      distrito: "Distrito", 
+      votos: `Votos (${p})` 
+    },
+    sort: "votos",
+    reverse: true,
+    rows: 18, // Mostra todos os distritos
+    layout: "auto"
+  })
+}
 ```
 
 # PieChart
@@ -267,16 +403,16 @@ chart = {
 
   // Mapa de cores dos partidos
   const partyColors = {
-    "CH": "#0033A1",               // Azul Escuro
-    "PPD/PSD.CDS-PP": "#FF8200",    // Laranja
-    "PS": "#FF8080",               // Rosa
-    "L": "#8aff8aff",                // Verde Claro
-    "IL": "#00AEEF",               // Azul Claro
-    "B.E.": "#D22630",             // Vermelho
-    "ADN": "#FFD700",              // Amarelo 
-    "PCP-PEV": "#A52A2A",          // Castanho Avermelhado
-    "PAN": "#009688",              // Verde Água
-    "ND": "#2c3e50"                // Cinzento Ardósia 
+    "CH": "rgb(0, 51, 161)", // Azul Escuro
+    "PPD/PSD.CDS-PP": "rgb(255, 130, 0)", // Laranja
+    "PS": "rgb(255, 128, 128)", // Rosa
+    "L": "rgb(138, 255, 138)", // Verde Claro
+    "IL": "rgb(0, 174, 239)", // Azul Claro
+    "B.E.": "rgb(210, 38, 48)", // Vermelho
+    "ADN": "rgb(255, 215, 0)", // Amarelo 
+    "PCP-PEV": "rgb(165, 42, 42)", // Castanho Avermelhado
+    "PAN": "rgb(0, 150, 136)", // Verde Água
+    "ND": "rgba(6, 32, 90, 1)"  // Cinzento Ardósia 
   };
   const defaultColor = "#cccccc"; // Cor padrão para outros partidos
 
@@ -408,3 +544,89 @@ chart = {
 }
 ```
 
+# Historico Vencedores
+## Graficos
+```{mermaid}
+%%| fig-align: center
+flowchart LR
+  X[2002]-->M(Vencedor)-->L{PSD}
+  G[2005]-->Y(Vencedor)-->P{PS}
+  A[2009] --> B(Vencedor )
+  B --> C{PS}
+  E[2011]-->F(Vencedor)-->H{PSD}
+```
+
+## Graficos 2
+```{mermaid}
+%%| fig-cap: PàF -> Coligação PPD/PSD.CDS–PP
+%%| fig-align: center
+flowchart LR
+  X[2015]-->M(Vencedor)-->L{PàF}
+  G[2019]-->Y(Vencedor)-->P{PS}
+  A[2022] --> B(Vencedor )
+  B --> C{PS}
+  E[2024]-->F(Vencedor)-->H{AD}
+```
+
+# Gráfico Barras
+## Gráfico
+```{ojs}
+Plot = require("@observablehq/plot")
+Inputsss = require("@observablehq/inputs")
+
+// Carregar dados
+dadosOriginal2 = await FileAttachment("data/legislativas1.json").json()
+
+// Campos que NÃO são partidos
+camposNaoPartidos2 = ["Votantes", "Abstenção", "Brancos", "Nulos", "Votos Val. Exp. (VVE)"]
+
+// Função para normalizar nomes dos distritos
+function normalizar2(str) {
+  if (typeof str !== "string") return ""
+  return str.normalize("NFD").replace(/\p{Diacritic}/gu, "").toUpperCase().trim()
+}
+
+// Construir dicionário { DISTRITO_NORMALIZADO : { PARTIDO : VOTOS } }
+dados2 = Object.fromEntries(
+  Object.entries(dadosOriginal2).map(([distrito, info]) => {
+    let partidos2 = {}
+    for (let [key, value] of Object.entries(info.data)) {
+      if (!camposNaoPartidos2.includes(key)) {
+        partidos2[key] = value["Número"] ?? 0
+      }
+    }
+    return [normalizar2(distrito), partidos2]
+  })
+)
+
+// Lista de partidos
+partidos2 = Array.from(
+  new Set(Object.values(dados2).flatMap(v => Object.keys(v)))
+).sort()
+
+// Dropdown de seleção de partido
+viewof partido2 = Inputs.select(partidos2, {
+  label: "Escolhe um partido",
+  value: partidos2[0]
+})
+
+// Gráfico reativo
+votosPlot = Plot.plot({
+  style: { fontSize: 14 },
+  marginLeft: 90,
+  y: { label: "Distrito" },
+  x: { label: "Votos" },
+  width: 900,
+  height: 500,
+  marks: [
+    Plot.barX(
+      Object.entries(dados2).map(([dist, v]) => ({
+        distrito: dist,
+        votos: v[partido2] ?? 0
+      })),
+      { x: "votos", y: "distrito", sort: { y: "x", reverse: true } }
+    ),
+    Plot.ruleX([0])
+  ]
+})
+```

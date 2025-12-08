@@ -1,0 +1,47 @@
+body {
+  font-family: "Segoe UI", sans-serif;
+  background: #cecece;
+}
+
+.navbar {
+  /*background: linear-gradient(135deg, #09972c, #eeff00, #e00c0c);*/
+  background: rgb(15, 56, 112);
+  font-family: Helvetica, sans-serif;
+  font-size: 0.8rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.navbar .nav-link.active {
+  color: #fff; /* cor do texto */
+  background: #ff1010; /* fundo */
+  border-radius: 10px;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+}
+
+.navbar .nav-link:hover {
+  color: #11cbff;
+  text-shadow: 0 0 6px rgba(255, 255, 255, 0.8);
+}
+
+.leaflet-container {
+  border-radius: 12px;
+  border: 2px solid #ffffff;
+}
+
+.quarto-dashboard .card {
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  background-color: rgb(255, 255, 255);
+  font-family: Helvetica, sans-serif;
+  font-size: 16px;
+  text-align: center;
+  min-height: 310px
+}
+
+.value-box-value {
+  font-size: 46px !important;   /* normalmente é 36px */
+}
+
+.value-box-icon {
+  font-size: 14px !important;   /* default é 48px */
+}
