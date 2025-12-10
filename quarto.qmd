@@ -146,36 +146,88 @@ dict(
 ### Mapa1
 
 ```{ojs}
-// carregar CSS
-html`<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">`
+{
+  // Carregar Leaflet global
+  const leafletCSS = html`<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">`;
+  const leafletJS = html`<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>`;
+  await Promise.all([leafletCSS, leafletJS]);
 
-// carregar JS como script global
-html`<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>`
+  // Carregar dados
+  const dadosEleicoes = await FileAttachment("data/legislativas1.json").json();
+  const districts = await FileAttachment("data/ContinenteDistritos_geo.geojson").json();
 
-// carregar o teu geojson
-districts = FileAttachment("data/ContinenteDistritos_geo.geojson").json()
+  // Funções auxiliares
+  const naoPartidos = ["Votantes","Abstenção","Brancos","Nulos","Votos Val. Exp. (VVE)"];
 
-// criar o mapa
-viewof map = {
-  let div = html`<div style="height:600px"></div>`
-
-  // garantir que L existe
-  if (!window.L) {
-    console.error("Leaflet failed to load.")
-    return div
+  function normalizar(str) {
+    if (typeof str !== 'string') return '';
+    return str.normalize("NFD").replace(/\p{Diacritic}/gu, "").toUpperCase().trim();
   }
 
-  let m = L.map(div).setView([39.5, -8], 7)
+  const coresPartidos = {
+    "CH": "rgb(0, 51, 161)",
+    "PPD/PSD.CDS-PP": "rgb(255, 130, 0)",
+    "PS": "rgb(255, 128, 128)",
+    "L": "rgb(138, 255, 138)",
+    "IL": "rgb(0, 174, 239)",
+    "B.E.": "rgb(210, 38, 48)",
+    "ADN": "rgb(255, 215, 0)",
+    "PCP-PEV": "rgb(165, 42, 42)",
+    "PAN": "rgb(0, 150, 136)",
+    "ND": "rgba(6, 32, 90, 1)"
+  };
 
-  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-    maxZoom: 18
-  }).addTo(m)
+  // Calcular vencedor por distrito
+  const vencedores = {};
+  for (const [distrito, info] of Object.entries(dadosEleicoes)) {
+    let maxVotos = -1;
+    let vencedor = "";
 
-  L.geoJSON(districts).addTo(m)
-  
-  return div
+    for (const [partido, dadosPartido] of Object.entries(info.data)) {
+      if (naoPartidos.includes(partido)) continue;
+
+      const v = dadosPartido["Número"] ?? 0;
+      if (v > maxVotos) {
+        maxVotos = v;
+        vencedor = partido;
+      }
+    }
+    vencedores[normalizar(distrito)] = { vencedor, maxVotos };
+  }
+
+  // Criar mapa
+  const div = html`<div style="height:600px"></div>`;
+  const mapa = L.map(div).setView([39.5, -8], 7);
+
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(mapa);
+
+  // Pintar distritos
+  L.geoJSON(districts, {
+    style: feature => {
+      const nomeDistrito = feature.properties.NAME_1 || feature.properties.Distrito;
+      const key = normalizar(nomeDistrito);
+      const vencedor = vencedores[key]?.vencedor;
+      return {
+        fillColor: coresPartidos[vencedor] ?? "#ccc",
+        color: "white",
+        weight: 1,
+        fillOpacity: 0.75
+      };
+    },
+    onEachFeature: (feature, layer) => {
+      const nome = feature.properties.NAME_1 || feature.properties.Distrito;
+      const key = normalizar(nome);
+      const info = vencedores[key];
+      if (!info) return;
+
+      layer.bindTooltip(
+        `<b>${nome}</b><br>${info.vencedor}<br>${info.maxVotos.toLocaleString("pt-PT")} votos`
+      );
+    }
+  }).addTo(mapa);
+
+  return div;
 }
-map
 ```
 
 ### Mapa2
@@ -214,7 +266,8 @@ partidos = Array.from(
 
 viewof partido = Inputs.select(partidos, {
   label: "Partido:",
-  value: partidos[14]
+  value: partidos[14],
+  name: "partido_mapa2" 
 })
 
 districts2 = await FileAttachment("data/ContinenteDistritos_geo.geojson").json()
@@ -329,7 +382,7 @@ viewof tabelaDistritos = {
       p = partido;
     }
   } catch (e) {
-    // Ignora erro se 'partido' não existir ainda
+    console.log('O partido não existe.')
   }
 
   // Carregar dados

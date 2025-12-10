@@ -2,6 +2,8 @@
 
 Este projeto é um dashboard interativo para a visualização de dados eleitorais, desenvolvido com [Quarto](https://quarto.org/).
 
+![image](dashboard_image.png)
+
 ## Autores
 
 - Simão Rodrigues
