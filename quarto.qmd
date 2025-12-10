@@ -63,7 +63,6 @@ for distrito in dados:
     votantes += dados[distrito]["data"]["Votantes"]["Número"];
     votantes += dados[distrito]["data"]["Brancos"]["Número"];
     votantes += dados[distrito]["data"]["Nulos"]["Número"];
-
 ```
 
 ```{python}
@@ -184,7 +183,7 @@ map
 ```{ojs}
 import { Inputs } from "@observablehq/inputs"
 
-// Carrega os dados originais para uma variável global segura
+// Carrega os dados originais para uma variável global
 dadosOriginal = await FileAttachment("data/legislativas1.json").json()
 
 camposNaoPartidos = [
@@ -214,8 +213,8 @@ partidos = Array.from(
 ).sort()
 
 viewof partido = Inputs.select(partidos, {
-  label: "Escolhe um partido:",
-  value: partidos[0]
+  label: "Partido:",
+  value: partidos[14]
 })
 
 districts2 = await FileAttachment("data/ContinenteDistritos_geo.geojson").json()
@@ -228,7 +227,7 @@ function cor(votos, max) {
   if (intensidade < 0) intensidade = 0;
   if (intensidade > 1) intensidade = 1;
   const alpha = 0.2 + 0.8 * intensidade; 
-  return `rgba(255,120,0,${alpha})`;
+  return `rgba(255,120,0,${alpha})`; 
 }
 
 viewof map2 = {
@@ -254,7 +253,6 @@ viewof map2 = {
     geojsonLayer = L.geoJSON(districts2, {
       style: feature => {
         let nomeNorm = normalizar(feature.properties.NAME_1 || feature.properties.Distrito)
-
         let votos = dadosMap2[nomeNorm]?.[partidoSelecionado]
         return {
           fillColor: cor(votos, maxVotos),
@@ -262,6 +260,18 @@ viewof map2 = {
           weight: 1,
           fillOpacity: 0.8
         }
+      },
+      // Hover com os detalhes
+      onEachFeature: (feature, layer) => {
+        const nomeDistrito = feature.properties.NAME_1 || feature.properties.Distrito;
+        const nomeNorm = normalizar(nomeDistrito);
+        let votos = dadosMap2[nomeNorm]?.[partidoSelecionado] || 0;
+        
+        // Cria o conteúdo do tooltip
+        let tooltipContent = `<b>${nomeDistrito}</b><br>${votos.toLocaleString('pt-PT')} votos`;
+
+        // Adiciona o tooltip à camada. O Leaflet trata de o mostrar/esconder.
+        layer.bindTooltip(tooltipContent);
       }
     }).addTo(m2)
   }
@@ -311,9 +321,9 @@ Inputs.table(votosPorPartido, {
 ```{ojs}
 // Tabela de Votos por Distrito (Dinâmica)
 viewof tabelaDistritos = {
-  // 1. Obter partido selecionado (com fallback seguro)
-  // Tenta ler a variável 'partido' do input global. Se falhar, usa "PS".
-  let p = "PS";
+  // Obter partido selecionado
+  // Tenta ler a variável 'partido' do input global. Se falhar, usa "PPD/PSD.CDS-PP.PPM".
+  let p = "PPD/PSD.CDS-PP.PPM";
   try {
     if (typeof partido !== 'undefined' && partido) {
       p = partido;
@@ -322,10 +332,10 @@ viewof tabelaDistritos = {
     // Ignora erro se 'partido' não existir ainda
   }
 
-  // 2. Carregar dados
+  // Carregar dados
   const dadosLocais = await FileAttachment("data/legislativas1.json").json();
 
-  // 3. Preparar dados filtrados pelo partido
+  // Preparar dados filtrados pelo partido
   const dadosFormatados = Object.entries(dadosLocais).map(([distrito, info]) => {
     // Tenta obter votos do partido 'p'. Se não existir, 0.
     const votos = info.data[p]?.["Número"] || 0;
@@ -336,7 +346,7 @@ viewof tabelaDistritos = {
     };
   });
 
-  // 4. Renderizar tabela
+  // Renderizar tabela
   return Inputs.table(dadosFormatados, {
     columns: ["distrito", "votos"],
     header: { 
@@ -352,7 +362,6 @@ viewof tabelaDistritos = {
 ```
 
 # PieChart
-
 
 ```{ojs}
 chart = {

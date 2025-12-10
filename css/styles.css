@@ -35,13 +35,13 @@ body {
   font-family: Helvetica, sans-serif;
   font-size: 16px;
   text-align: center;
-  min-height: 310px
+  min-height: 310px;
 }
 
 .value-box-value {
-  font-size: 46px !important;   /* normalmente é 36px */
+  font-size: 46px !important; /* normalmente é 36px */
 }
 
 .value-box-icon {
-  font-size: 14px !important;   /* default é 48px */
+  font-size: 14px !important; /* default é 48px */
 }
