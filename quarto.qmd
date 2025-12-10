@@ -1,5 +1,5 @@
 ---
-title: Portugal Legislativas 2025
+title: Portugal Legislativas 2024
 format: 
     dashboard:
         orientation: columns
