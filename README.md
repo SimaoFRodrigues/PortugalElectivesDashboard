@@ -4,12 +4,6 @@ Este projeto é um dashboard interativo para a visualização de dados eleitorai
 
 ## Autores
 
-\*# Dashboard de Eleições Legislativas
-
-Este projeto é um dashboard interativo para a visualização de dados eleitorais, desenvolvido com [Quarto](https://quarto.org/).
-
-## Autores
-
 - Simão Rodrigues
 - Rodrigo Resa
 
