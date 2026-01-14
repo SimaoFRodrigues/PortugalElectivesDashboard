@@ -92,7 +92,7 @@ abstencoes = {
 }
 
 # maior
-distrito_max = max(abstencoes, key=abstencoes.get)
+distrito_max = max(abstencoes, key=abstencoes.get) # compara o valor associado de cada key
 valor_max = abstencoes[distrito_max]
 
 distrito_min = min(abstencoes, key=abstencoes.get)
@@ -128,7 +128,7 @@ votantes = 0
 votos_vencedor = 0
 
 for distrito in dados:
-    votos_vencedor += dados[distrito]["data"]["Votantes"]["Número"];
+    votos_vencedor += dados[distrito]["data"]["Votantes"]["Número"]
 ```
 ```{python}
 #| content: valuebox
@@ -147,21 +147,17 @@ dict(
 
 ```{ojs}
 {
-  // Carregar Leaflet global
-  const leafletCSS = html`<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">`;
-  const leafletJS = html`<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>`;
-  await Promise.all([leafletCSS, leafletJS]);
-
   // Carregar dados
   const dadosEleicoes = await FileAttachment("data/legislativas1.json").json();
   const districts = await FileAttachment("data/ContinenteDistritos_geo.geojson").json();
-
-  // Funções auxiliares
   const naoPartidos = ["Votantes","Abstenção","Brancos","Nulos","Votos Val. Exp. (VVE)"];
 
+ // Normalizar os nomes para sem acentos e tudo letra maiúscula
   function normalizar(str) {
-    if (typeof str !== 'string') return '';
-    return str.normalize("NFD").replace(/\p{Diacritic}/gu, "").toUpperCase().trim();
+    if (typeof str !== 'string'){
+      return '';
+    } 
+    return str.normalize("NFD").replace(/\p{Diacritic}/gu, " ").toUpperCase().trim();
   }
 
   const coresPartidos = {
@@ -233,9 +229,6 @@ dict(
 ### Mapa2
 
 ```{ojs}
-import { Inputs } from "@observablehq/inputs"
-
-// Carrega os dados originais para uma variável global
 dadosOriginal = await FileAttachment("data/legislativas1.json").json()
 
 camposNaoPartidos = [
@@ -275,10 +268,16 @@ districts2 = await FileAttachment("data/ContinenteDistritos_geo.geojson").json()
 function cor(votos, max) {
   const v = Number(votos) || 0;
   const m = Number(max) || 0;
-  if (!Number.isFinite(m) || m <= 0) return "rgba(220,220,220,0.6)";
+  if (!Number.isFinite(m) || m <= 0){
+     return "rgba(220,220,220,0.6)";
+  }
   let intensidade = v / m;
-  if (intensidade < 0) intensidade = 0;
-  if (intensidade > 1) intensidade = 1;
+  if (intensidade < 0){
+    intensidade = 0;
+  }
+  if (intensidade > 1){
+    intensidade = 1;
+  }
   const alpha = 0.2 + 0.8 * intensidade; 
   return `rgba(255,120,0,${alpha})`; 
 }
@@ -323,7 +322,7 @@ viewof map2 = {
         // Cria o conteúdo do tooltip
         let tooltipContent = `<b>${nomeDistrito}</b><br>${votos.toLocaleString('pt-PT')} votos`;
 
-        // Adiciona o tooltip à camada. O Leaflet trata de o mostrar/esconder.
+        // Adiciona o tooltip à camada
         layer.bindTooltip(tooltipContent);
       }
     }).addTo(m2)
@@ -372,9 +371,8 @@ Inputs.table(votosPorPartido, {
 ### VotosDistrito (Tabela)
 
 ```{ojs}
-// Tabela de Votos por Distrito (Dinâmica)
+// Tabela de Votos por Distrito
 viewof tabelaDistritos = {
-  // Obter partido selecionado
   // Tenta ler a variável 'partido' do input global. Se falhar, usa "PPD/PSD.CDS-PP.PPM".
   let p = "PPD/PSD.CDS-PP.PPM";
   try {
@@ -418,8 +416,7 @@ viewof tabelaDistritos = {
 
 ```{ojs}
 chart = {
-  // Carregar os dados limpos
-  const rawData = await FileAttachment("data/legislativas1.json").json();
+  const dadosLocais = await FileAttachment("data/legislativas1.json").json();
 
   // Lista de chaves que não são partidos para excluir da visualização
   const nonPartyKeys = [
@@ -427,11 +424,11 @@ chart = {
   ];
 
   // Função para transformar os dados para o formato hierárquico
-  function transformData(rawData) {
+  function transformData(dadosLocais) {
     const parties = {}; // Objeto para agrupar dados por partido
 
     // Itera sobre cada distrito nos dados brutos
-    for (const [districtName, districtData] of Object.entries(rawData)) {
+    for (const [districtName, districtData] of Object.entries(dadosLocais)) {
       // Itera sobre cada entrada (partido ou outra métrica) dentro do distrito
       for (const [key, value] of Object.entries(districtData.data)) {
         // Verifica se é um partido e se tem um número de votos válido
@@ -461,7 +458,7 @@ chart = {
   }
 
   // Criar a variável 'data' usando a função
-  const data = transformData(rawData);
+  const data = transformData(dadosLocais);
 
   // Mapa de cores dos partidos
   const partyColors = {
@@ -535,7 +532,7 @@ chart = {
   path.append("title")
       .text(d => `${d.ancestors().map(d => d.data.name).reverse().join(" > ")}\n${format(d.value)} votos`);
 
-  // Adicionar as etiquetas de texto
+  // Adicionar as etiquetas de texto (pie chart)
   const label = svg.append("g")
       .attr("pointer-events", "none")
       .attr("text-anchor", "middle")
@@ -548,7 +545,7 @@ chart = {
       .attr("transform", d => labelTransform(d.current))
       .text(d => d.data.name);
 
-  // Círculo central para voltar ao zoom inicial
+  // Círculo central para voltar ao zoom inicial (pie chart)
   const parent = svg.append("circle")
       .datum(root)
       .attr("r", radius)
@@ -556,7 +553,7 @@ chart = {
       .attr("pointer-events", "all")
       .on("click", clicked);
 
-  // Função para lidar com o zoom ao clicar
+  // Função para lidar com o zoom ao clicar (pie chart)
   function clicked(event, p) {
     parent.datum(p.parent || root);
 
@@ -633,10 +630,6 @@ flowchart LR
 # Gráfico Barras
 ## Gráfico
 ```{ojs}
-Plot = require("@observablehq/plot")
-Inputsss = require("@observablehq/inputs")
-
-// Carregar dados
 dadosOriginal2 = await FileAttachment("data/legislativas1.json").json()
 
 // Campos que NÃO são partidos
@@ -648,7 +641,7 @@ function normalizar2(str) {
   return str.normalize("NFD").replace(/\p{Diacritic}/gu, "").toUpperCase().trim()
 }
 
-// Construir dicionário { DISTRITO_NORMALIZADO : { PARTIDO : VOTOS } }
+// Construir dict {DISTRITO:{PARTIDO:VOTOS}}
 dados2 = Object.fromEntries(
   Object.entries(dadosOriginal2).map(([distrito, info]) => {
     let partidos2 = {}
