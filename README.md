@@ -9,6 +9,20 @@ Este projeto é um dashboard interativo para a visualização de dados eleitorai
 - Simão Rodrigues
 - Rodrigo Resa
 
+## GitHub Pages
+
+Este ZIP já está preparado para GitHub Pages. O ficheiro principal é `index.html`, por isso o GitHub Pages deixa de abrir apenas o `README.md`.
+
+Para publicar:
+
+1. Enviar todos os ficheiros desta pasta para o repositório.
+2. No GitHub, ir a **Settings > Pages**.
+3. Em **Build and deployment**, escolher **Deploy from a branch**.
+4. Selecionar a branch `main` e a pasta `/root`.
+5. Guardar e abrir o link gerado pelo GitHub Pages.
+
+Nota: se voltares a renderizar o projeto com Quarto, usa `index.qmd` como ficheiro principal.
+
 ## Instruções de Execução
 
 Para executar este projeto localmente, siga os passos abaixo:

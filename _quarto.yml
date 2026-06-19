@@ -1,5 +1,8 @@
 project:
-  title: "Quarto"
+  type: website
+  title: "Portugal Legislativas 2024"
 
-
-
+format:
+  html:
+    theme: cosmo
+    css: css/styles.css
