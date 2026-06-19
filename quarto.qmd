@@ -1,5 +1,6 @@
 ---
 title: Portugal Legislativas 2024
+output-file: index.html
 format: 
     dashboard:
         orientation: columns
